@@ -1,0 +1,63 @@
+﻿@model AppMvcBasic.Models.Supplier
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="text-start">
+    <h1 class="display-4">Fornecedores</h1>
+    <p class="text-muted">Criação de fornecedores.</p>
+</div>
+<hr />
+<form asp-action="Create">
+    <div class="row">
+
+        <div class="col-md-4">
+            <h4>Fornecedores</h4>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentNumber" class="control-label"></label>
+                <input asp-for="DocumentNumber" class="form-control" />
+                <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" name="SupplierType" value="1" asp-for="SupplierType" checked /> Pessoa Física
+                <input type="radio" name="SupplierType" value="2" asp-for="SupplierType" /> Pessoa Jurídica
+            </div>
+
+            <div class="form-group form-check mt-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <h4>Endereços</h4>
+            <partial name="_Address" />
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-md-end">
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -1,0 +1,52 @@
+﻿@model AppMvcBasic.Models.Supplier
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="text-start">
+    <h1 class="display-4">Fornecedor</h1>
+    <p class="text-muted">Editar fornecedor.</p>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentNumber" class="control-label"></label>
+                <input asp-for="DocumentNumber" class="form-control" />
+                <span asp-validation-for="DocumentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" name="SupplierType" value="1" asp-for="SupplierType" checked="@Model.SupplierType.GetHashCode()==1" /> Pessoa Física
+                <input type="radio" name="SupplierType" value="2" asp-for="SupplierType" checked="@Model.SupplierType.GetHashCode()==2" /> Pessoa Jurídica
+            </div>
+
+            <div class="form-group form-check mt-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
